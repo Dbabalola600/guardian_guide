@@ -11,11 +11,11 @@ import MyTabBar from "./CustomTabBar";
 
 
 const Tab = createBottomTabNavigator();
-type HomeProps = NativeStackScreenProps<HomeStackParamList>
 
 
 
-const Tabs = ({ navigation }: HomeProps) => {
+
+const Tabs = () => {
     return (
         <Tab.Navigator
             screenOptions={{

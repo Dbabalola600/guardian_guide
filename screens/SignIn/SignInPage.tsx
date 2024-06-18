@@ -11,10 +11,14 @@ import Octicons from "react-native-vector-icons/Octicons";
 import Logo from "../../assets/images/mainLogo1.svg"
 import { NativeStackScreenProps } from "@react-navigation/native-stack"
 import { AuthStackParamList } from "../allRoutes"
+import { loginAccountSchema, LoginYourAccountFormType } from "../../utils/helpers/validations"
+import { zodResolver } from "@hookform/resolvers/zod"
+import LoginValidation from "./loginValidation"
+import { SecureStorage } from "../../utils/storage/secureStorage"
 
 type ScreenProps = NativeStackScreenProps<AuthStackParamList>
 
-const SignInScreen = ({navigation}: ScreenProps) => {
+const SignInScreen = ({ navigation }: ScreenProps) => {
 
     const {
         register,
@@ -23,7 +27,27 @@ const SignInScreen = ({navigation}: ScreenProps) => {
         control,
         setValue,
         formState: { errors },
-    } = useForm();
+    } = useForm<LoginYourAccountFormType>({
+        resolver: zodResolver(loginAccountSchema)
+    });
+
+
+
+
+    const onSubmit = handleSubmit(async (data) => {
+        // console.log(data)
+        // LoginValidation(data)
+
+        LoginValidation(data).then(async (res)=>{
+            console.log(res)
+            if(res === true){
+                await SecureStorage.getInst().save("userAuthenticated", "true")
+            }else{
+
+            }
+        })
+    })
+
     return (
         <Layout
             backButton
@@ -80,7 +104,7 @@ const SignInScreen = ({navigation}: ScreenProps) => {
 
 
                 <View style={{
-                    gap: 10, 
+                    gap: 10,
                     marginBottom: verticalScale(40)
                 }}>
                     <AppTextField
@@ -93,19 +117,18 @@ const SignInScreen = ({navigation}: ScreenProps) => {
                                 />
                             </View>
                         }
-                        validationName="l"
+                        validationName="email"
                         control={control}
-                        // isPassword
                         placeholder="Email"
-                    // isEditable = {false}
+                        errorMessage={errors.email?.message}
                     />
 
                     <AppTextField
-                        validationName="l"
+                        validationName="password"
                         control={control}
                         isPassword
-                        placeholder="Passowrd"
-                    // isEditable = {false}
+                        placeholder="Password"
+                        errorMessage={errors.password?.message}
                     />
                     <View style={{
 
@@ -131,6 +154,7 @@ const SignInScreen = ({navigation}: ScreenProps) => {
                     }}
                 >
                     <AppButton
+                        onPress={onSubmit}
                         text="Access your Acount"
                     />
 

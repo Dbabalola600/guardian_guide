@@ -2,6 +2,7 @@
 interface ThemeContextValue {
   theme: Theme;
   toggleTheme: () => void;
+  currentTheme: string
 }
 
 
@@ -15,7 +16,8 @@ interface Theme {
   lightPrimary: string;
   backgroundAlt: string,
   whiteColor: string,
-  lightGreen: string, 
-    darkGreen: string
+  lightGreen: string,
+  darkGreen: string,
+  inputColour: string
 
 }

@@ -63,7 +63,7 @@ const WelcomeScreen = ({navigation}: ScreenProps) => {
         slider.current.goToSlide(newIndex, true);
 
 
-        console.log(activeIndex)
+        // console.log(activeIndex)
     }
 
     const _renderItem = ({ item }: any) => {
@@ -209,6 +209,7 @@ const WelcomeScreen = ({navigation}: ScreenProps) => {
                             gap: 10
                         }}>
                             <AppButton
+                                onPress={()=>navigation.navigate("SignUp")}
                                 text="Start Parenting"
                             />
 

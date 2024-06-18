@@ -1,7 +1,7 @@
 import RNSecureStorage, { ACCESSIBLE } from 'rn-secure-storage';
 
 
-type SecureStorageKeys = "fName" | "lName" | "password" | "userId" | "email" | "image" | "userAuthenticated" | "firstTime"
+type SecureStorageKeys = "fName" | "lName" | "password" | "userId" | "email" | "image" | "userAuthenticated" | "firstTime" | "theme"
 
 
 export class SecureStorage {
@@ -41,7 +41,7 @@ export class SecureStorage {
     }
 
 
-    async clearAll(key: SecureStorageKeys, value: string): Promise<boolean> {
+    async clearAll(): Promise<boolean> {
         try {
             await RNSecureStorage.clear();
             return true;

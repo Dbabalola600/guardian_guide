@@ -8,27 +8,29 @@ import React, { createContext, useState, useContext, ReactNode } from 'react';
 export const themes: { light: Theme; dark: Theme } = {
     light: {
         backgroundColor: '#FFFFFF',
-        whiteColor:"#FFFFFF",
+        whiteColor: "#FFFFFF",
         textColor: '#333333',
         textColor2: "#777777",
         primary: "#3E6B99",
         secondary: "#7BB661",
         lightPrimary: "#6A9DD7",
         backgroundAlt: "#D4E0ED",
-         lightGreen:"#EBFDF5B2", 
-           darkGreen:"#7BB661"
+        lightGreen: "#EBFDF5B2",
+        darkGreen: "#7BB661",
+        inputColour: "#999999"
     },
     dark: {
         backgroundColor: '#000000',
         textColor: '#333333',
-        whiteColor:"#FFFFFF",
+        whiteColor: "#FFFFFF",
         primary: "#3E6B99",
         textColor2: "#777777",
         secondary: "#7BB661",
         lightPrimary: "#6A9DD7",
         backgroundAlt: "#D4E0ED",
-         lightGreen:"#EBFDF5B2", 
-           darkGreen:"#7BB661"
+        lightGreen: "#EBFDF5B2",
+        darkGreen: "#7BB661",
+        inputColour: "#999999"
     },
 };
 
@@ -41,16 +43,19 @@ export const palette = {
     textColor2: "#777777",
     primary: "#3E6B99",
     secondary: "#7BB661",
-    lightPrimary: "#6A9DD7", 
-    whiteColor:"#FFFFFF",
-    whiteBg:"#F5F5F5", 
-    lightGreen:"#EBFDF5B2", 
-    darkGreen:"#7BB661"
+    lightPrimary: "#6A9DD7",
+    whiteColor: "#FFFFFF",
+    whiteBg: "#F5F5F5",
+    lightGreen: "#EBFDF5B2",
+    darkGreen: "#7BB661",
+    inputColour: "#999999"
 }
 
 // Create the context with a default value
 export const ThemeContext = createContext<ThemeContextValue>({
     theme: themes.light,
     toggleTheme: () => { },
+    // currentTheme: 
+    currentTheme: "light" || "dark"
 });
 

@@ -52,8 +52,10 @@ const SignUpScreen = ({ navigation }: ScreenProps) => {
         await SecureStorage.getInst().save("fName", data.fName)
         await SecureStorage.getInst().save("lName", data.lName)
         await SecureStorage.getInst().save("password", data.password)
+        await SecureStorage.getInst().save("image", "")
         await SecureStorage.getInst().save("userId", "jjwllaooon30913")
         await SecureStorage.getInst().save("userAuthenticated", "true")
+        await SecureStorage.getInst().save("theme", "light")
     })
     return (
         <Layout

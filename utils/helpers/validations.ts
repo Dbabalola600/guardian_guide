@@ -32,8 +32,27 @@ export const createYourAccountSchema = z
     })
     .refine((data) => data.password === data.confirmPassword, {
         message: "Passwords must match",
-        path: ["confirmPassword"], 
+        path: ["confirmPassword"],
     });
 
+
+
+
+export const loginAccountSchema = z
+    .object({
+        password: z
+            .string({
+                required_error: "A password is required",
+            })
+        ,
+        email: z
+            .string({
+                required_error: "Your Email is required",
+            })
+            .email({ message: "Must be a valid email address" }),
+    })
+
+
+export type LoginYourAccountFormType = z.infer<typeof loginAccountSchema>;
 
 export type CreateYourAccountFormType = z.infer<typeof createYourAccountSchema>;

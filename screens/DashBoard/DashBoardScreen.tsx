@@ -1,4 +1,4 @@
-import { StyleSheet, TouchableOpacity, View } from "react-native"
+import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native"
 import Layout from "../../components/Layout/MainLayout"
 import { useContext, useEffect, useState } from "react";
 import { palette, ThemeContext } from "../../utils/lib/Colours/colours";
@@ -11,34 +11,44 @@ import { useIsFocused } from "@react-navigation/native";
 import { AppButton } from "../../components/Display/AppButton";
 import GrowthMetricsCard from "../../components/Display/GrowMetricsCard";
 import Bmi from "../../assets/icons/bmi.svg"
+import GrowthMetric from "./GrowthMetric";
+import FamilyCalendar from "./FamilyCalendar";
+import ParentingNugget from "./ParentingNugget";
+import ParentingResourceHub from "./ParentingResource";
+
+
 const DashboardScreen = () => {
     const { theme, toggleTheme } = useContext<ThemeContextValue>(ThemeContext);
     return (
         <Layout backgroundColour={palette.backgroundAlt} appBar={<HeaderStuff />}>
-            <View style={{
+            <ScrollView style={{
                 // flex: 1
-            }}>
+                gap: verticalScale(10),
+                columnGap: verticalScale(20),
 
-                {/* <AppButton
-                    text="info"
-                    onPress={toggleTheme}
-                /> */}
+            }}
+                contentContainerStyle={{
+                    // columnGap: verticalScale(20), 
+                    // paddingVertical: verticalScale(40)
+                    paddingBottom: verticalScale(30)
+                }}
+            >
 
-
-                <View style={styles.growthMetricCard}>
-                    <GrowthMetricsCard
-                        details={
-                            <View>
-                                <Bmi width={24} height={24} />
-                            </View>
-                        }
-                        mainClick={() => { }}
-                        title={"BMI"}
-                        color={"#F7E5E5E5"} />
+                <View style={{ marginBottom: verticalScale(10) }}>
+                    <GrowthMetric />
                 </View>
 
+                <View style={{ marginBottom: verticalScale(10) }}>
+                   <ParentingNugget/>
+                </View>
 
-            </View>
+                <View style={{ marginBottom: verticalScale(10) }}>
+                   <ParentingResourceHub/>
+                </View>
+                <View style={{ marginBottom: verticalScale(10) }}>
+                    <FamilyCalendar />
+                </View>
+            </ScrollView>
         </Layout>
     )
 }
@@ -77,7 +87,8 @@ const HeaderStuff = () => {
         <View style={{
             flexDirection: "row",
             justifyContent: "space-between",
-            width: "100%"
+            width: "100%",
+            paddingHorizontal: moderateScale(20)
         }}>
 
             <View>

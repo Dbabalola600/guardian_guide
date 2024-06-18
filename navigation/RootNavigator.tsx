@@ -20,7 +20,7 @@ const RootNavigator = () => {
 
     const checker = async () => {
         await SecureStorage.getInst().getValueFor("userAuthenticated").then((res: any) => {
-            // console.log(res)
+            // console.log("here",res)
 
             if (res === "true") {
                 setUserAuthenticated(true)
@@ -42,7 +42,7 @@ const RootNavigator = () => {
         const loadData = async () => {
             // Simulate async operations
 
-            console.log("loading")
+            // console.log("loading")
             await new Promise(resolve => setTimeout(resolve, 2000)); // Wait for 2 seconds
             setLoading(false); // Set loading to false after simulated loading
         };
@@ -68,11 +68,9 @@ const RootNavigator = () => {
             {userAuthenticated === true ?
                 (
                     <Stack.Screen name="HomeNavigation" component={AppStack} />
-
                 )
                 :
                 (
-
                     <Stack.Screen name="AuthNavigator" component={AuthStack} />
                 )
 
